@@ -18,3 +18,8 @@ Historical Official Forecasts Database, and a plain-English description.
 list_forecast_series()
 
 }
+\seealso{
+Other forecasts: 
+\code{\link{get_forecasts}()}
+}
+\concept{forecasts}

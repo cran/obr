@@ -1,3 +1,13 @@
+# obr 0.2.4
+
+* Removed non-existent pkgdown URL from DESCRIPTION.
+
+# obr 0.2.3
+
+* Examples now cache to `tempdir()` instead of the user's home directory,
+  fixing CRAN policy compliance for `\donttest` examples.
+* Cache directory is now configurable via `options(obr.cache_dir = ...)`.
+
 # obr 0.2.2
 
 * Fix README URLs flagged by CRAN incoming checks (301 redirects).

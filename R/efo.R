@@ -126,6 +126,7 @@ parse_efo_output_gap <- function(path) {
 #' @examples
 #' list_efo_economy_measures()
 #'
+#' @family EFO
 #' @export
 list_efo_economy_measures <- function() {
   data.frame(
@@ -163,10 +164,13 @@ list_efo_economy_measures <- function() {
 #'
 #' @examples
 #' \donttest{
+#' op <- options(obr.cache_dir = tempdir())
 #' efo <- get_efo_fiscal()
 #' efo[efo$series == "Net borrowing", ]
+#' options(op)
 #' }
 #'
+#' @family EFO
 #' @export
 get_efo_fiscal <- function(refresh = FALSE) {
   parse_efo_fiscal(efo_aggregates_path(refresh))
@@ -197,14 +201,17 @@ get_efo_fiscal <- function(refresh = FALSE) {
 #'
 #' @examples
 #' \donttest{
+#' op <- options(obr.cache_dir = tempdir())
 #' # CPI and RPI since 2008
 #' inf <- get_efo_economy("inflation")
 #' inf[inf$series == "CPI", ]
 #'
 #' # Labour market
 #' lab <- get_efo_economy("labour")
+#' options(op)
 #' }
 #'
+#' @family EFO
 #' @export
 get_efo_economy <- function(measure = "inflation", refresh = FALSE) {
   valid <- c("labour", "inflation", "output_gap")

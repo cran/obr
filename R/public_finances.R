@@ -89,10 +89,13 @@ parse_receipts_bn <- function(path) {
 #'
 #' @examples
 #' \donttest{
+#' op <- options(obr.cache_dir = tempdir())
 #' pf <- get_public_finances()
 #' unique(pf$series)
+#' options(op)
 #' }
 #'
+#' @family public finances
 #' @export
 get_public_finances <- function(refresh = FALSE) {
   parse_aggregates_bn(pfd_path(refresh))
@@ -115,10 +118,13 @@ get_public_finances <- function(refresh = FALSE) {
 #'
 #' @examples
 #' \donttest{
+#' op <- options(obr.cache_dir = tempdir())
 #' psnb <- get_psnb()
 #' tail(psnb)
+#' options(op)
 #' }
 #'
+#' @family public finances
 #' @export
 get_psnb <- function(refresh = FALSE) {
   agg <- parse_aggregates_bn(pfd_path(refresh))
@@ -144,10 +150,13 @@ get_psnb <- function(refresh = FALSE) {
 #'
 #' @examples
 #' \donttest{
+#' op <- options(obr.cache_dir = tempdir())
 #' psnd <- get_psnd()
 #' tail(psnd)
+#' options(op)
 #' }
 #'
+#' @family public finances
 #' @export
 get_psnd <- function(refresh = FALSE) {
   agg <- parse_aggregates_bn(pfd_path(refresh))
@@ -174,10 +183,13 @@ get_psnd <- function(refresh = FALSE) {
 #'
 #' @examples
 #' \donttest{
+#' op <- options(obr.cache_dir = tempdir())
 #' tme <- get_expenditure()
 #' tail(tme)
+#' options(op)
 #' }
 #'
+#' @family public finances
 #' @export
 get_expenditure <- function(refresh = FALSE) {
   agg <- parse_aggregates_bn(pfd_path(refresh))
@@ -205,11 +217,14 @@ get_expenditure <- function(refresh = FALSE) {
 #'
 #' @examples
 #' \donttest{
+#' op <- options(obr.cache_dir = tempdir())
 #' receipts <- get_receipts()
 #' # Filter to income tax
 #' receipts[grepl("income tax", receipts$series, ignore.case = TRUE), ]
+#' options(op)
 #' }
 #'
+#' @family public finances
 #' @export
 get_receipts <- function(refresh = FALSE) {
   parse_receipts_bn(pfd_path(refresh))

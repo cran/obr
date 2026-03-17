@@ -69,12 +69,15 @@ parse_wtr_chart <- function(path, sheet) {
 #'
 #' @examples
 #' \donttest{
+#' op <- options(obr.cache_dir = tempdir())
 #' welfare <- get_welfare_spending()
 #' # Incapacity share since 2000
 #' welfare[welfare$series == "Working-age incapacity benefits spending" &
 #'         welfare$year >= "2000-01", ]
+#' options(op)
 #' }
 #'
+#' @family welfare
 #' @export
 get_welfare_spending <- function(refresh = FALSE) {
   parse_wtr_chart(wtr_path(refresh), "C1.3")
@@ -102,10 +105,13 @@ get_welfare_spending <- function(refresh = FALSE) {
 #'
 #' @examples
 #' \donttest{
+#' op <- options(obr.cache_dir = tempdir())
 #' ib <- get_incapacity_spending()
 #' unique(ib$series)
+#' options(op)
 #' }
 #'
+#' @family welfare
 #' @export
 get_incapacity_spending <- function(refresh = FALSE) {
   parse_wtr_chart(wtr_path(refresh), "C1.1")
@@ -131,11 +137,14 @@ get_incapacity_spending <- function(refresh = FALSE) {
 #'
 #' @examples
 #' \donttest{
+#' op <- options(obr.cache_dir = tempdir())
 #' cases <- get_incapacity_caseloads()
 #' # Total claimants
 #' cases[cases$series == "Claimants", ]
+#' options(op)
 #' }
 #'
+#' @family welfare
 #' @export
 get_incapacity_caseloads <- function(refresh = FALSE) {
   parse_wtr_chart(wtr_path(refresh), "C3.1")

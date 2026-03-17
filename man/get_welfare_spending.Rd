@@ -30,10 +30,18 @@ Data cover fiscal years from 1978-79 through the current forecast horizon
 }
 \examples{
 \donttest{
+op <- options(obr.cache_dir = tempdir())
 welfare <- get_welfare_spending()
 # Incapacity share since 2000
 welfare[welfare$series == "Working-age incapacity benefits spending" &
         welfare$year >= "2000-01", ]
+options(op)
 }
 
 }
+\seealso{
+Other welfare: 
+\code{\link{get_incapacity_caseloads}()},
+\code{\link{get_incapacity_spending}()}
+}
+\concept{welfare}

@@ -35,12 +35,19 @@ and for comparing forecasts against outturns.
 }
 \examples{
 \donttest{
+op <- options(obr.cache_dir = tempdir())
 # All PSNB forecasts
 get_forecasts("PSNB")
 
 # What did OBR forecast for 2024-25 PSNB at each Budget?
 psnb <- get_forecasts("PSNB")
 psnb[psnb$fiscal_year == "2024-25", ]
+options(op)
 }
 
 }
+\seealso{
+Other forecasts: 
+\code{\link{list_forecast_series}()}
+}
+\concept{forecasts}

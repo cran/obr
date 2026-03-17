@@ -1,12 +1,16 @@
 # Cache directory (platform-aware, base R)
 obr_cache_dir <- function() {
-  d <- tools::R_user_dir("obr", "cache")
+  d <- getOption("obr.cache_dir", default = tools::R_user_dir("obr", "cache"))
   if (!dir.exists(d)) dir.create(d, recursive = TRUE)
   d
 }
 
 # Download a file and cache it; return local path
 obr_fetch <- function(url, filename, refresh = FALSE) {
+  if (!is.logical(refresh) || length(refresh) != 1L || is.na(refresh)) {
+    cli::cli_abort("{.arg refresh} must be a single {.cls logical} value.")
+  }
+
   path <- file.path(obr_cache_dir(), filename)
 
   if (file.exists(path) && !refresh) {
@@ -16,11 +20,25 @@ obr_fetch <- function(url, filename, refresh = FALSE) {
 
   cli::cli_inform(c("i" = "Downloading {.file {filename}} from OBR..."))
 
-  req <- httr2::request(url) |>
-    httr2::req_user_agent("obr R package (https://github.com/charlescoverdale/obr)") |>
-    httr2::req_perform()
+  resp <- tryCatch(
+    httr2::request(url) |>
+      httr2::req_user_agent("obr R package (https://github.com/charlescoverdale/obr)") |>
+      httr2::req_throttle(rate = 5 / 10) |>
+      httr2::req_retry(
+        max_tries = 3,
+        is_transient = function(resp) httr2::resp_status(resp) %in% c(429L, 503L)
+      ) |>
+      httr2::req_perform(),
+    error = function(e) {
+      cli::cli_abort(
+        c("Failed to download {.url {url}}.",
+          "x" = conditionMessage(e)),
+        call = NULL
+      )
+    }
+  )
 
-  writeBin(httr2::resp_body_raw(req), path)
+  writeBin(httr2::resp_body_raw(resp), path)
   cli::cli_inform(c("v" = "Saved to cache."))
   path
 }
@@ -34,9 +52,12 @@ obr_fetch <- function(url, filename, refresh = FALSE) {
 #'
 #' @examples
 #' \donttest{
+#' op <- options(obr.cache_dir = tempdir())
 #' clear_cache()
+#' options(op)
 #' }
 #'
+#' @family data access
 #' @export
 clear_cache <- function() {
   files <- list.files(obr_cache_dir(), full.names = TRUE)

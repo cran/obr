@@ -15,7 +15,10 @@ function call will re-download fresh data from the OBR website.
 }
 \examples{
 \donttest{
+op <- options(obr.cache_dir = tempdir())
 clear_cache()
+options(op)
 }
 
 }
+\concept{data access}

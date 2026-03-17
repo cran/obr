@@ -36,6 +36,7 @@ long-run cost of the state pension.
 }
 \examples{
 \donttest{
+op <- options(obr.cache_dir = tempdir())
 proj <- get_pension_projections()
 
 # Central demographic projection over the 50-year horizon
@@ -45,6 +46,8 @@ tail(central, 10)
 
 # How much more expensive is 'higher life expectancy' vs central?
 dem <- proj[proj$scenario_type == "Demographic scenarios", ]
+options(op)
 }
 
 }
+\concept{long-term fiscal}

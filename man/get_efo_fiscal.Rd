@@ -31,8 +31,16 @@ net investment, and net borrowing (PSNB).
 }
 \examples{
 \donttest{
+op <- options(obr.cache_dir = tempdir())
 efo <- get_efo_fiscal()
 efo[efo$series == "Net borrowing", ]
+options(op)
 }
 
 }
+\seealso{
+Other EFO: 
+\code{\link{get_efo_economy}()},
+\code{\link{list_efo_economy_measures}()}
+}
+\concept{EFO}

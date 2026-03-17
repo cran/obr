@@ -24,8 +24,18 @@ the government is borrowing (deficit); a negative value means a surplus.
 }
 \examples{
 \donttest{
+op <- options(obr.cache_dir = tempdir())
 psnb <- get_psnb()
 tail(psnb)
+options(op)
 }
 
 }
+\seealso{
+Other public finances: 
+\code{\link{get_expenditure}()},
+\code{\link{get_psnd}()},
+\code{\link{get_public_finances}()},
+\code{\link{get_receipts}()}
+}
+\concept{public finances}

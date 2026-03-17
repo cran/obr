@@ -24,8 +24,18 @@ measure of UK government spending.
 }
 \examples{
 \donttest{
+op <- options(obr.cache_dir = tempdir())
 tme <- get_expenditure()
 tail(tme)
+options(op)
 }
 
 }
+\seealso{
+Other public finances: 
+\code{\link{get_psnb}()},
+\code{\link{get_psnd}()},
+\code{\link{get_public_finances}()},
+\code{\link{get_receipts}()}
+}
+\concept{public finances}

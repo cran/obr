@@ -34,12 +34,20 @@ Use \code{\link{list_efo_economy_measures}} to see all available measures.
 }
 \examples{
 \donttest{
+op <- options(obr.cache_dir = tempdir())
 # CPI and RPI since 2008
 inf <- get_efo_economy("inflation")
 inf[inf$series == "CPI", ]
 
 # Labour market
 lab <- get_efo_economy("labour")
+options(op)
 }
 
 }
+\seealso{
+Other EFO: 
+\code{\link{get_efo_fiscal}()},
+\code{\link{list_efo_economy_measures}()}
+}
+\concept{EFO}

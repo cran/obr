@@ -18,3 +18,9 @@ short description of what each covers.
 list_efo_economy_measures()
 
 }
+\seealso{
+Other EFO: 
+\code{\link{get_efo_economy}()},
+\code{\link{get_efo_fiscal}()}
+}
+\concept{EFO}

@@ -27,9 +27,17 @@ the working-age population.
 }
 \examples{
 \donttest{
+op <- options(obr.cache_dir = tempdir())
 cases <- get_incapacity_caseloads()
 # Total claimants
 cases[cases$series == "Claimants", ]
+options(op)
 }
 
 }
+\seealso{
+Other welfare: 
+\code{\link{get_incapacity_spending}()},
+\code{\link{get_welfare_spending}()}
+}
+\concept{welfare}

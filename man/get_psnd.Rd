@@ -23,8 +23,18 @@ annual Public Sector Net Debt in £ billion.
 }
 \examples{
 \donttest{
+op <- options(obr.cache_dir = tempdir())
 psnd <- get_psnd()
 tail(psnd)
+options(op)
 }
 
 }
+\seealso{
+Other public finances: 
+\code{\link{get_expenditure}()},
+\code{\link{get_psnb}()},
+\code{\link{get_public_finances}()},
+\code{\link{get_receipts}()}
+}
+\concept{public finances}
