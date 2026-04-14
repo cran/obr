@@ -1,10 +1,12 @@
-# July 2025 Fiscal Risks and Sustainability: executive summary charts and tables
-FSR_DATE          <- "July 2025"
-FSR_EXEC_URL      <- "https://obr.uk/download/july-2025-fiscal-risks-and-sustainability-charts-and-tables-executive-summary/"
-FSR_EXEC_FILENAME <- "fsr_executive_summary.xlsx"
+# Fiscal Risks and Sustainability: executive summary charts and tables
+# URL resolved dynamically; hardcoded fallback to July 2025.
+FSR_EXEC_FALLBACK  <- "https://obr.uk/download/july-2025-fiscal-risks-and-sustainability-charts-and-tables-executive-summary/"
+FSR_EXEC_FILENAME  <- "fsr_executive_summary.xlsx"
 
 fsr_exec_path <- function(refresh = FALSE) {
-  obr_fetch(FSR_EXEC_URL, FSR_EXEC_FILENAME, refresh = refresh)
+  url <- obr_resolve_url(fsr_url_candidates())
+  if (is.null(url)) url <- FSR_EXEC_FALLBACK
+  obr_fetch(url, FSR_EXEC_FILENAME, refresh = refresh)
 }
 
 # Parse C1.2: state pension spending scenarios.

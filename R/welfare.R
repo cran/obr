@@ -1,10 +1,12 @@
-# October 2024 Welfare Trends Report: charts and tables
-WTR_DATE     <- "October 2024"
-WTR_URL      <- "https://obr.uk/download/welfare-trends-report-october-2024-charts-and-tables/"
+# Welfare Trends Report: charts and tables
+# URL resolved dynamically; hardcoded fallback to October 2024.
+WTR_FALLBACK <- "https://obr.uk/download/welfare-trends-report-october-2024-charts-and-tables/"
 WTR_FILENAME <- "welfare_trends.xlsx"
 
 wtr_path <- function(refresh = FALSE) {
-  obr_fetch(WTR_URL, WTR_FILENAME, refresh = refresh)
+  url <- obr_resolve_url(wtr_url_candidates())
+  if (is.null(url)) url <- WTR_FALLBACK
+  obr_fetch(url, WTR_FILENAME, refresh = refresh)
 }
 
 # Generic parser for WTR chart data sheets.

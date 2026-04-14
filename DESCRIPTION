@@ -1,6 +1,6 @@
 Package: obr
 Title: Access 'Office for Budget Responsibility' Data
-Version: 0.2.4
+Version: 0.2.5
 Authors@R: person("Charles", "Coverdale", email = "charlesfcoverdale@gmail.com", role = c("aut", "cre"))
 Description: Provides clean, tidy access to data published by the 'Office for
     Budget Responsibility' ('OBR'), the UK's independent fiscal watchdog. Covers
@@ -23,8 +23,8 @@ Imports: cli, httr2, readxl, tools
 Suggests: testthat (>= 3.0.0)
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2026-03-16 18:12:04 UTC; charlescoverdale
+Packaged: 2026-04-13 15:18:50 UTC; charlescoverdale
 Author: Charles Coverdale [aut, cre]
 Maintainer: Charles Coverdale <charlesfcoverdale@gmail.com>
 Repository: CRAN
-Date/Publication: 2026-03-17 08:30:09 UTC
+Date/Publication: 2026-04-14 07:20:02 UTC

@@ -1,16 +1,20 @@
-# March 2026 EFO Detailed Forecast Tables
-EFO_DATE               <- "March 2026"
-EFO_AGGREGATES_URL     <- "https://obr.uk/download/march-2026-economic-and-fiscal-outlook-detailed-forecast-tables-aggregates/"
+# EFO Detailed Forecast Tables
+# URLs are resolved dynamically; hardcoded fallback to March 2026.
+EFO_AGGREGATES_FALLBACK <- "https://obr.uk/download/march-2026-economic-and-fiscal-outlook-detailed-forecast-tables-aggregates/"
 EFO_AGGREGATES_FILENAME <- "efo_aggregates.xlsx"
-EFO_ECONOMY_URL        <- "https://obr.uk/download/march-2026-economic-and-fiscal-outlook-detailed-forecast-tables-economy/"
-EFO_ECONOMY_FILENAME   <- "efo_economy.xlsx"
+EFO_ECONOMY_FALLBACK    <- "https://obr.uk/download/march-2026-economic-and-fiscal-outlook-detailed-forecast-tables-economy/"
+EFO_ECONOMY_FILENAME    <- "efo_economy.xlsx"
 
 efo_aggregates_path <- function(refresh = FALSE) {
-  obr_fetch(EFO_AGGREGATES_URL, EFO_AGGREGATES_FILENAME, refresh = refresh)
+  url <- obr_resolve_url(efo_url_candidates("detailed-forecast-tables-aggregates"))
+  if (is.null(url)) url <- EFO_AGGREGATES_FALLBACK
+  obr_fetch(url, EFO_AGGREGATES_FILENAME, refresh = refresh)
 }
 
 efo_economy_path <- function(refresh = FALSE) {
-  obr_fetch(EFO_ECONOMY_URL, EFO_ECONOMY_FILENAME, refresh = refresh)
+  url <- obr_resolve_url(efo_url_candidates("detailed-forecast-tables-economy"))
+  if (is.null(url)) url <- EFO_ECONOMY_FALLBACK
+  obr_fetch(url, EFO_ECONOMY_FILENAME, refresh = refresh)
 }
 
 # Parse sheet 6.5 (Components of Net Borrowing) from EFO aggregates file.

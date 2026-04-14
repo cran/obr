@@ -1,3 +1,10 @@
+# obr 0.2.5
+
+* EFO, Welfare Trends Report, and Fiscal Sustainability Report download URLs
+  are now resolved dynamically, trying recent publication dates in reverse
+  chronological order. This prevents functions from breaking when OBR publishes
+  new editions. Hardcoded URLs are retained as fallbacks.
+
 # obr 0.2.4
 
 * Removed non-existent pkgdown URL from DESCRIPTION.
